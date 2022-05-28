@@ -12,3 +12,6 @@ e digite:
 ```powershell
 .\Installer.ps1
 ```
+Totalmente online: baixa os programas, salva em uma pasta, instala, com menu interativo.
+
+Somente leve o script para onde quiser e execute.
