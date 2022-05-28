@@ -4,4 +4,5 @@ Pós instalação Windows usando powershell para fazer downloads de alguns progr
 
 Para usar o script, abra um terminal e digite `powershell` e digite:
 
-*Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+```Set-ExecutionPolicy RemoteSigned -Scope CurrentUser``` e digite:
+```.\Installer.ps1```
