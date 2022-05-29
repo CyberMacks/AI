@@ -27,6 +27,16 @@ if ((Test-Admin) -eq $false) {
 
 Set-Location "$workingDirOverride"
 
+if (Test-Path -Path "$PSScriptRoot\Downloads") {
+  Get-ChildItem -Path "$PSScriptRoot\Downloads" -Recurse | Remove-Item -Force -Recurse
+  Remove-Item -Path "$PSScriptRoot\Downloads" -Force
+}
+
+if (Test-Path -Path "$PSScriptRoot\Logs") {
+  Get-ChildItem -Path "$PSScriptRoot\Logs" -Recurse | Remove-Item -Force -Recurse
+  Remove-Item -Path "$PSScriptRoot\Logs" -Force
+}
+
 Start-BitsTransfer -Source "https://github.com/Bedrame/AfterInstall/releases/download/1.0/aria2c.exe" -Destination "aria2c.exe"
 Start-BitsTransfer -Source "https://github.com/Bedrame/AfterInstall/releases/download/1.0/aria2c.conf" -Destination "aria2c.conf"
 Start-BitsTransfer -Source "https://github.com/Bedrame/AfterInstall/releases/download/1.0/7za.exe" -Destination "7za.exe"
@@ -236,9 +246,11 @@ Function Get-InstallMenu {
         $MenuOption = $null
       }     
       0 {
-        Clear-Host        
-        DS_DeleteDirectory -Directory "$PSScriptRoot\Downloads"
-        DS_DeleteDirectory -Directory "$PSScriptRoot\Logs"      
+        Clear-Host 
+        Get-ChildItem -Path "$PSScriptRoot\Downloads" -Recurse | Remove-Item -Force -Recurse
+        Remove-Item -Path "$PSScriptRoot\Downloads" -Force       
+        Get-ChildItem -Path "$PSScriptRoot\Logs" -Recurse | Remove-Item -Force -Recurse
+        Remove-Item -Path "$PSScriptRoot\Logs" -Force            
         DS_DeleteFile -File "$PSScriptRoot\7za.exe"
         DS_DeleteFile -File "$PSScriptRoot\aria2c.exe"
         DS_DeleteFile -File "$PSScriptRoot\aria2c.conf"
