@@ -13,7 +13,7 @@ Logo após isso, vá ate o diretório onde baixou o script e digite:
 .\Installer.ps1
 ```
 O script pedirá permissão de administrador, baixará algumas dependências e mostrará um menu, onde poderá ser selecionada uma ação a ser executada.<br>
-Totalmente online: baixa os programas, salva em uma pasta e instala silenciosamente se possível.
+Totalmente online, salva em uma pasta e instala silenciosamente se possível.
 
 Leve o script para onde quiser e execute.
 
