@@ -81,6 +81,7 @@ $menu =
 16 - Python Install  
 17 - Youtube-DL GUI     
 18 - StaxRip
+19 - Kaspersky Free Install
 0 - Exit`n
 "@
 
@@ -236,6 +237,14 @@ Function Get-InstallMenu {
         Wait-Script
         $MenuOption = $null
       }     
+      19 {
+        Write-Host "Kaspersky Free Install" -ForegroundColor Green
+        Get-KasperskyFree
+        Write-Host ""
+        Wait-Script
+        $MenuOption = $null
+      }     
+
       0 {
         Clear-Host 
         Get-ChildItem -Path "$PSScriptRoot\Downloads" -Recurse | Remove-Item -Force -Recurse
