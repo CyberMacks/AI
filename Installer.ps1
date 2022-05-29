@@ -244,7 +244,6 @@ Function Get-InstallMenu {
         Wait-Script
         $MenuOption = $null
       }     
-
       0 {
         Clear-Host 
         Get-ChildItem -Path "$PSScriptRoot\Downloads" -Recurse | Remove-Item -Force -Recurse
