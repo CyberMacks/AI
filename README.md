@@ -19,8 +19,7 @@ Leve o script para onde quiser e execute.
 
 *Inspirado na ferramenta [Fedy](https://github.com/rpmfusion-infra/fedy) mas sem interface gráfica!*
 
- 
- 
+
  
  
  
