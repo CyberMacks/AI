@@ -74,20 +74,19 @@ $menu =
 9 - Ninite Online Install
 10 - Update Powershell Help
 11 - Update Windows and Reboot
-12 - Configure git and SSH
-13 - ML-1610 Printer Driver
-14 - FFMpeg Install
-15 - Encoding Video
-16 - Laragon Install  
-17 - Python Install  
-18 - Youtube-DL GUI     
-19 - StaxRip
+12 - ML-1610 Printer Driver
+13 - FFMpeg Install
+14 - Encoding Video
+15 - Laragon Install  
+16 - Python Install  
+17 - Youtube-DL GUI     
+18 - StaxRip
 0 - Exit`n
 "@
 
 Function Get-InstallMenu {       
   $MenuOption = $null
-  While ($MenuOption -notin @(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 0)) {
+  While ($MenuOption -notin @(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 0)) {
     Clear-Host    
     Set-TypeStatic 0.05 $t
     Set-WriteColor $menu
@@ -187,58 +186,50 @@ Function Get-InstallMenu {
         Write-Host ""
         Wait-Script
         $MenuOption = $null
-      }
-      12 {  
-        Write-Host "Git Configure" -ForegroundColor Green
-        Set-ConfigGit
-        Write-Host ""
-        Wait-Script
-        $MenuOption = $null
       }      
-      13 {        
+      12 {        
         Write-Host "ML-1610 Printer Install" -ForegroundColor Green
         Get-PrinterDriver       
         Write-Host ""
         Wait-Script
         $MenuOption = $null
       }
-      14 {
+      13 {
         Write-Host "FFMPEG Install" -ForegroundColor Green
         Get-FFMpeg                
         Write-Host ""
         Wait-Script
         $MenuOption = $null
       }
-      15 {
+      14 {
         Write-Host "Encoding Video" -ForegroundColor Green
         Get-ShanaEncoder       
         Write-Host ""
         Wait-Script
         $MenuOption = $null
       }
-      16 {
+      15 {
         Write-Host "Laragon Install" -ForegroundColor Green
         Get-Laragon       
         Write-Host ""
         Wait-Script
         $MenuOption = $null
       }
-      17 {
+      16 {
         Write-Host "Python Install" -ForegroundColor Green
-        Get-Python
-        Get-UpdatePIP
+        Get-Python        
         Write-Host ""
         Wait-Script
         $MenuOption = $null
       }
-      18 {
+      17 {
         Write-Host "Youtube-DL GUI" -ForegroundColor Green
         Get-ViviDL
         Write-Host ""
         Wait-Script
         $MenuOption = $null
       }
-      19 {
+      18 {
         Write-Host "StaxRip" -ForegroundColor Green
         Get-StaxRip
         Write-Host ""
