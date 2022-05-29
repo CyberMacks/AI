@@ -15,4 +15,12 @@ Logo após isso, vá ate o diretório onde baixou o script e digite:
 O script pedirá permissão de administrador, baixará algumas dependências e mostrará um menu, onde poderá ser selecionada uma ação a ser executada.
 Totalmente online: baixa os programas, salva em uma pasta e instala silenciosamente se possível.
 
-Somente leve o script para onde quiser e execute.
+Leve o script para onde quiser e execute.
+
+*Inspirado na ferramenta [Fedy](https://github.com/rpmfusion-infra/fedy) mas sem interface gráfica
+
+ 
+ 
+ 
+ 
+ 
