@@ -38,7 +38,7 @@ DS_CreateDirectory -Directory "$(Get-Location)\Downloads"
 DS_CreateDirectory -Directory "$(Get-Location)\Logs"
 Function Get-InstallMenu {       
   $MenuOption = $null
-  While ($MenuOption -notin @(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 0)) {
+  While ($MenuOption -notin @(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 0)) {
     Clear-Host
     Write-Host "================================================================================"
     Write-Host "                    Post Installation" -ForegroundColor "Yellow"
@@ -55,7 +55,7 @@ Function Get-InstallMenu {
     Write-Host "  9 - Ninite Online Install" -ForegroundColor "Green"
     Write-Host "  10 - Update Powershell Help" -ForegroundColor "Green"
     Write-Host "  11 - Update Windows and Reboot" -ForegroundColor "Green"
-    Write-Host "  12- Configure git and SSH" -ForegroundColor "Green"
+    Write-Host "  12 - Configure git and SSH" -ForegroundColor "Green"
     Write-Host "  13 - ML-1610 Printer Driver" -ForegroundColor "Green"
     Write-Host "  14 - FFMpeg Install" -ForegroundColor "Green"
     Write-Host "  15 - Encoding Video" -ForegroundColor "Green"
@@ -63,6 +63,7 @@ Function Get-InstallMenu {
     Write-Host "  17 - Python Install" -ForegroundColor "Green"   
     Write-Host "  18 - Youtube-DL GUI" -ForegroundColor "Green"    
     Write-Host "  19 - StaxRip" -ForegroundColor "Green"
+    Write-Host "  20 - Delete all" -ForegroundColor "Green"
     Write-Host "`n  0 - Exit`n" -ForegroundColor "Yellow"
     $MenuOption = Read-Host 'Select option'
     Write-Host ""
@@ -240,6 +241,18 @@ Function Get-InstallMenu {
       19 {
         Write-host "StaxRip" -ForegroundColor Green
         Get-StaxRip
+        Write-Host ""
+        Wait-Script
+        $MenuOption = $null
+      }
+      20 {
+        Write-host "Delete all" -ForegroundColor Green
+        DS_DeleteDirectory -Directory "$(Get-Location)\Downloads"
+        DS_DeleteDirectory -Directory "$(Get-Location)\Logs"      
+        DS_DeleteFile -File "$PSScriptRoot\7za.exe"
+        DS_DeleteFile -File "$PSScriptRoot\aria2c.exe"
+        DS_DeleteFile -File "$PSScriptRoot\aria2c.conf"
+        DS_DeleteFile -File "$PSScriptRoot\Installer.psm1"
         Write-Host ""
         Wait-Script
         $MenuOption = $null
