@@ -36,103 +36,93 @@ Import-Module ".\Installer.psm1"
 
 DS_CreateDirectory -Directory "$(Get-Location)\Downloads"
 DS_CreateDirectory -Directory "$(Get-Location)\Logs"
+
+$t = 
+@"
+#########################################################################################
+                 __   _                     _____                 _             _   _ 
+        /\      / _| | |                   |_   _|               | |           | | | |
+       /  \    | |_  | |_    ___   _ __      | |    _ __    ___  | |_    __ _  | | | |
+      / /\ \   |  _| | __|  / _ \ | '__|     | |   |  _ \  / __| | __|  / _  | | | | |
+     / ____ \  | |   | |_  |  __/ | |       _| |_  | | | | \__ \ | |_  | (_| | | | | |
+    /_/    \_\ |_|    \__|  \___| |_|      |_____| |_| |_| |___/  \__|  \____| |_| |_|
+
+#########################################################################################  
+"@
+
+$menu = 
+@"
+`nPlease select an option:
+1 - Modules Install
+2 - TPM Check on Dynamic Update
+3 - Services Tweaking
+4 - Enable .NET Framework 3.5
+5 - Visual C++ Runtimes Install
+6 - Streams Cleaner
+7 - Essentials Programs Install
+8 - NVIDIA Driver Install
+9 - Ninite Online Install
+10 - Update Powershell Help
+11 - Update Windows and Reboot
+12 - Configure git and SSH
+13 - ML-1610 Printer Driver
+14 - FFMpeg Install
+15 - Encoding Video
+16 - Laragon Install  
+17 - Python Install  
+18 - Youtube-DL GUI     
+19 - StaxRip
+0 - Exit`n
+"@
+
 Function Get-InstallMenu {       
   $MenuOption = $null
-  While ($MenuOption -notin @(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 0)) {
-    Clear-Host
-    Write-Host "================================================================================"
-    Write-Host "                    Post Installation" -ForegroundColor "Yellow"
-    Write-Host "================================================================================"
-    Write-Host "`nPlease select an option:" -ForegroundColor "Yellow"
-    Write-Host "  1 - Modules Install" -ForegroundColor "Green"
-    Write-Host "  2 - TPM Check on Dynamic Update"  -ForegroundColor "Green"
-    Write-Host "  3 - Services Tweaking" -ForegroundColor "Green"
-    Write-Host "  4 - Enable .NET Framework 3.5" -ForegroundColor "Green"
-    Write-Host "  5 - Visual C++ Runtimes Install" -ForegroundColor "Green"
-    Write-Host "  6 - Streams Cleaner" -ForegroundColor "Green"
-    Write-Host "  7 - Essentials Programs Install" -ForegroundColor "Green"
-    Write-Host "  8 - NVIDIA Driver Install" -ForegroundColor "Green"
-    Write-Host "  9 - Ninite Online Install" -ForegroundColor "Green"
-    Write-Host "  10 - Update Powershell Help" -ForegroundColor "Green"
-    Write-Host "  11 - Update Windows and Reboot" -ForegroundColor "Green"
-    Write-Host "  12 - Configure git and SSH" -ForegroundColor "Green"
-    Write-Host "  13 - ML-1610 Printer Driver" -ForegroundColor "Green"
-    Write-Host "  14 - FFMpeg Install" -ForegroundColor "Green"
-    Write-Host "  15 - Encoding Video" -ForegroundColor "Green"
-    Write-Host "  16 - Laragon Install" -ForegroundColor "Green"  
-    Write-Host "  17 - Python Install" -ForegroundColor "Green"   
-    Write-Host "  18 - Youtube-DL GUI" -ForegroundColor "Green"    
-    Write-Host "  19 - StaxRip" -ForegroundColor "Green"
-    Write-Host "  20 - Delete all" -ForegroundColor "Green"
-    Write-Host "`n  0 - Exit`n" -ForegroundColor "Yellow"
+  While ($MenuOption -notin @(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 0)) {
+    Clear-Host    
+    Set-TypeStatic 0.05 $t
+    Set-WriteColor $menu
     $MenuOption = Read-Host 'Select option'
     Write-Host ""
   
     Switch ($MenuOption.Trim()) {
       1 {
-        Write-Host "Modules Install" 
+        Write-Host "Modules Install" -ForegroundColor Green 
         Get-Modules
         Write-Host ""
         Wait-Script
         $MenuOption = $null
       }
       2 {        
+        Write-Host "TPM Check on Dynamic Update" -ForegroundColor Green
         Disable-TPM
         Write-Host ""
         Wait-Script
         $MenuOption = $null                     
       }
       3 {  
-        Write-Host "Services Tweaking" -ForegroundColor DarkCyan    
+        Write-Host "Services Tweaking" -ForegroundColor Green    
         Get-TweakWindows
         Write-Host ""
         Wait-Script
         $MenuOption = $null         
       }
       4 {
-        Write-Host "Enable .NET Framework 3.5"
+        Write-Host "Enable .NET Framework 3.5" -ForegroundColor Green
         Enable-WindowsOptionalFeature -Online -FeatureName "NetFx3"
         Write-Host ""
         Wait-Script
         $MenuOption = $null 
       }
       5 {       
-        Write-Host "Visual C++ Installer Runtimes" 
+        Write-Host "Visual C++ Installer Runtimes" -ForegroundColor Green 
         Get-VisualRuntime
         Write-Host ""
         Wait-Script
         $MenuOption = $null 
       }      
       6 {         
-        $streams = "Streams.zip"   
-        $streamFolder = "$PSScriptRoot\stream"      
-        Write-Host "Clear NTFS Streams" -ForegroundColor Green       
-        if (Test-Path $streamFolder) {
-          Write-Host "Folder exists" -ForegroundColor DarkRed
-        }
-        else {
-          New-Item $streamfolder -ItemType Directory
-          Write-Host "Folder $streamfolder created successfully" -ForegroundColor Green
-        }      
-        if (-not(Test-Path -Path $streams -PathType Leaf)) {    
-          try {         
-            $null = Start-BitsTransfer -Source "https://download.sysinternals.com/files/Streams.zip" -Destination $streamFolder -TransferType Download
-            Write-Host "The file $streams has been downloaded." -ForegroundColor Green
-            Expand-Archive -Path "$streamFolder\$streams" -DestinationPath $streamFolder -Force -Confirm:$false 
-            Remove-Item "$streamFolder\streams.exe" -Force -Recurse -Confirm:$false
-            Remove-Item "$streamFolder\streams64a.exe" -Force -Recurse -Confirm:$false
-            Remove-Item "$streamFolder\Eula.txt" -Force -Recurse -Confirm:$false
-            Rename-Item -Path "$streamFolder\streams64.exe" -NewName "$streamFolder\streams.exe" 
-            Copy-Item -Path "$streamFolder\streams.exe" $env:windir
-            Write-Host "Done" -ForegroundColor DarkCyan
-          }
-          catch {
-            throw $_.Exception.Message
-          }
-        }
-        else {
-          Write-Host "Cannot download because a file with that name already exists." -ForegroundColor DarkRed
-        }      
+        Write-Host "Streams Cleaner" -ForegroundColor Green        
+        Get-StreamsSysInternals
         DS_ExecuteProcess -FileName "streams" -Arguments "-s -d"   
         Write-Host ""
         Wait-Script
@@ -140,7 +130,7 @@ Function Get-InstallMenu {
       }      
       7 {                      
         DS_ExecuteProcess -FileName "streams" -Arguments "-s -d"   
-        Write-Host "Download and install programs" -ForegroundColor Green           
+        Write-Host "Download and install programs" -ForegroundColor Green       
         Get-RevoUninstaller  
         Get-LockHunter 
         Get-IDM 
@@ -161,28 +151,28 @@ Function Get-InstallMenu {
         $MenuOption = $null
       }
       8 {       
-        Write-Host "Install NVIDIA Drivers" -ForegroundColor DarkYellow
+        Write-Host "Install NVIDIA Drivers" -ForegroundColor Green
         Get-NVidia
         Write-Host ""
         Wait-Script
         $MenuOption = $null
       }
       9 {       
-        Write-Host "Execute Ninite Online Installer" -ForegroundColor DarkYellow        
+        Write-Host "Ninite Online Install" -ForegroundColor Green       
         Get-Ninite       
         Write-Host ""
         Wait-Script
         $MenuOption = $null                  
       }
       10 {  
-        Write-Host "Update powershell help" -ForegroundColor Green        
+        Write-Host "Update powershell help" -ForegroundColor Green   
         Get-UpdatePowershell
         Write-Host ""
         Wait-Script
         $MenuOption = $null
       }
       11 {  
-        Write-Host "Update Windows" -ForegroundColor Green
+        Write-Host "Update Windows" -ForegroundColor Green 
         Get-Updates
         Write-Host ""
         Wait-Script
@@ -203,7 +193,7 @@ Function Get-InstallMenu {
         $MenuOption = $null
       }
       14 {
-        Write-Host "FFMPEG Install" -ForegroundColor DarkCyan
+        Write-Host "FFMPEG Install" -ForegroundColor Green
         Get-FFMpeg                
         Write-Host ""
         Wait-Script
@@ -217,14 +207,14 @@ Function Get-InstallMenu {
         $MenuOption = $null
       }
       16 {
-        Write-host "Laragon Install" -ForegroundColor Green
+        Write-Host "Laragon Install" -ForegroundColor Green
         Get-Laragon       
         Write-Host ""
         Wait-Script
         $MenuOption = $null
       }
       17 {
-        Write-host "Python Install" -ForegroundColor Green
+        Write-Host "Python Install" -ForegroundColor Green
         Get-Python
         Get-UpdatePIP
         Write-Host ""
@@ -232,37 +222,31 @@ Function Get-InstallMenu {
         $MenuOption = $null
       }
       18 {
-        Write-host "Youtube-DL GUI" -ForegroundColor Green
+        Write-Host "Youtube-DL GUI" -ForegroundColor Green
         Get-ViviDL
         Write-Host ""
         Wait-Script
         $MenuOption = $null
       }
       19 {
-        Write-host "StaxRip" -ForegroundColor Green
+        Write-Host "StaxRip" -ForegroundColor Green
         Get-StaxRip
         Write-Host ""
         Wait-Script
         $MenuOption = $null
-      }
-      20 {
-        Write-host "Delete all" -ForegroundColor Green
-        DS_DeleteDirectory -Directory "$(Get-Location)\Downloads"
-        DS_DeleteDirectory -Directory "$(Get-Location)\Logs"      
+      }     
+      0 {
+        Clear-Host        
+        DS_DeleteDirectory -Directory "$PSScriptRoot\Downloads"
+        DS_DeleteDirectory -Directory "$PSScriptRoot\Logs"      
         DS_DeleteFile -File "$PSScriptRoot\7za.exe"
         DS_DeleteFile -File "$PSScriptRoot\aria2c.exe"
         DS_DeleteFile -File "$PSScriptRoot\aria2c.conf"
         DS_DeleteFile -File "$PSScriptRoot\Installer.psm1"
-        Write-Host ""
-        Wait-Script
-        $MenuOption = $null
-      }
-      0 {
-        Clear-Host        
         break
       }
       Default {
-        Write-Host "Please enter a valid option.`n" -ForegroundColor "Red"
+        Write-Host "Please enter a valid option.`n"
         Wait-Script
       }
     }
