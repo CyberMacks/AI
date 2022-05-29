@@ -17,7 +17,7 @@ Totalmente online: baixa os programas, salva em uma pasta e instala silenciosame
 
 Leve o script para onde quiser e execute.
 
-**Inspirado na ferramenta [Fedy](https://github.com/rpmfusion-infra/fedy) mas sem interface gráfica!
+*Inspirado na ferramenta [Fedy](https://github.com/rpmfusion-infra/fedy) mas sem interface gráfica!*
 
  
  
