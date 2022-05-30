@@ -36,11 +36,11 @@ $menu =
 `nPlease select an option:
 1 - Services Tweaking
 2 - Enable .NET Framework 3.5
-3 - Visual C++ Runtimes Install
-4 - Streams Cleaner
+3 - Streams Cleaner
+4 - Visual C++ Runtimes Install
 5 - Essentials Programs Install
 6 - NVIDIA Driver Install
-7 - Ninite Online Install
+7 - Ninite Install
 8 - ML-1610 Printer Driver
 9 - FFMpeg Install
 10 - Encoding Video
@@ -75,34 +75,38 @@ Function Get-InstallMenu {
         Write-Host ""
         Wait-Script
         $MenuOption = $null 
-      }
-      3 {       
-        Write-Host "Visual C++ Installer Runtimes" -ForegroundColor Green 
-        Get-VisualRuntime
-        Write-Host ""
-        Wait-Script
-        $MenuOption = $null 
       }      
-      4 {         
+      3 {         
         Write-Host "Streams Cleaner" -ForegroundColor Green        
         Get-StreamsSysInternals
         DS_ExecuteProcess -FileName "streams" -Arguments "-s -d"   
         Write-Host ""
         Wait-Script
         $MenuOption = $null           
-      }      
+      }
+      4 {       
+        DS_ExecuteProcess -FileName "streams" -Arguments "-s -d"         
+        Write-Host "Visual C++ Installer Runtimes" -ForegroundColor Green 
+        Get-VisualRuntime
+        Write-Host ""
+        Wait-Script
+        $MenuOption = $null 
+      }            
       5 {                      
         DS_ExecuteProcess -FileName "streams" -Arguments "-s -d"   
         Write-Host "Download and install programs" -ForegroundColor Green       
-        Get-RevoUninstaller        
+        Get-RevoUninstaller
+        Get-CCleaner
+        Get-Git        
         Get-LockHunter         
         Get-IDM 
         Get-WinRAR                 
         Get-Telegram         
         Get-JDK 
         Get-Unified      
-        Get-Arduino                
-        Get-Git
+        Get-Arduino 
+        Get-FoxitReader
+        Get-PowershellCore
         Get-Teams        
         Get-GitHubCLI
         Get-LightShot          
@@ -112,6 +116,7 @@ Function Get-InstallMenu {
         $MenuOption = $null
       }
       6 {       
+        DS_ExecuteProcess -FileName "streams" -Arguments "-s -d" 
         Write-Host "Install NVIDIA Drivers" -ForegroundColor Green
         Get-NVidia
         Write-Host ""
@@ -119,6 +124,7 @@ Function Get-InstallMenu {
         $MenuOption = $null
       }
       7 {       
+        DS_ExecuteProcess -FileName "streams" -Arguments "-s -d" 
         Write-Host "Ninite Online Install" -ForegroundColor Green       
         Get-Ninite       
         Write-Host ""
@@ -126,6 +132,7 @@ Function Get-InstallMenu {
         $MenuOption = $null                  
       }            
       8 {        
+        DS_ExecuteProcess -FileName "streams" -Arguments "-s -d" 
         Write-Host "ML-1610 Printer Install" -ForegroundColor Green
         Get-PrinterDriver       
         Write-Host ""
@@ -133,6 +140,7 @@ Function Get-InstallMenu {
         $MenuOption = $null
       }
       9 {
+        DS_ExecuteProcess -FileName "streams" -Arguments "-s -d" 
         Write-Host "FFMPEG Install" -ForegroundColor Green
         Get-FFMpeg                
         Write-Host ""
@@ -140,6 +148,7 @@ Function Get-InstallMenu {
         $MenuOption = $null
       }
       10 {
+        DS_ExecuteProcess -FileName "streams" -Arguments "-s -d" 
         Write-Host "Encoding Video" -ForegroundColor Green
         Get-ShanaEncoder       
         Write-Host ""
@@ -147,6 +156,7 @@ Function Get-InstallMenu {
         $MenuOption = $null
       }
       11 {
+        DS_ExecuteProcess -FileName "streams" -Arguments "-s -d" 
         Write-Host "Laragon Install" -ForegroundColor Green
         Get-Laragon       
         Write-Host ""
@@ -154,6 +164,7 @@ Function Get-InstallMenu {
         $MenuOption = $null
       }
       12 {
+        DS_ExecuteProcess -FileName "streams" -Arguments "-s -d" 
         Write-Host "Python Install" -ForegroundColor Green
         Get-Python        
         Write-Host ""
@@ -161,6 +172,7 @@ Function Get-InstallMenu {
         $MenuOption = $null
       }
       13 {
+        DS_ExecuteProcess -FileName "streams" -Arguments "-s -d" 
         Write-Host "Youtube-DL GUI" -ForegroundColor Green
         Get-ViviDL
         Write-Host ""
@@ -168,6 +180,7 @@ Function Get-InstallMenu {
         $MenuOption = $null
       }
       14 {
+        DS_ExecuteProcess -FileName "streams" -Arguments "-s -d" 
         Write-Host "StaxRip" -ForegroundColor Green
         Get-StaxRip
         Write-Host ""
@@ -175,6 +188,7 @@ Function Get-InstallMenu {
         $MenuOption = $null
       }     
       15 {
+        DS_ExecuteProcess -FileName "streams" -Arguments "-s -d" 
         Write-Host "Kaspersky Free Install" -ForegroundColor Green
         Get-KasperskyFree
         Write-Host ""
