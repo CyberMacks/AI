@@ -1,6 +1,6 @@
 # AfterInstall
 
-Script de pós instalação para Windows usando [powershell](https://docs.microsoft.com/pt-br/powershell/scripting/overview?view=powershell-7.2) e [aria2](https://aria2.github.io/).
+Script de pós instalação para Windows 10/11 64 bits usando [powershell](https://docs.microsoft.com/pt-br/powershell/scripting/overview?view=powershell-7.2) e [aria2](https://aria2.github.io/).
 
 Abra um terminal powershell como administrador, e digite:
 
