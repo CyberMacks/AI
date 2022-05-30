@@ -34,23 +34,21 @@ $t =
 $menu = 
 @"
 `nPlease select an option:
-1 - Modules Install
-2 - Services Tweaking
-3 - Enable .NET Framework 3.5
-4 - Visual C++ Runtimes Install
-5 - Streams Cleaner
-6 - Essentials Programs Install
-7 - NVIDIA Driver Install
-8 - Ninite Online Install
-9 - Update Windows 
-10 - ML-1610 Printer Driver
-11 - FFMpeg Install
-12 - Encoding Video
-13 - Laragon Install  
-14 - Python Install  
-15 - Youtube-DL GUI     
-16 - StaxRip
-17 - Kaspersky Free Install
+1 - Services Tweaking
+2 - Enable .NET Framework 3.5
+3 - Visual C++ Runtimes Install
+4 - Streams Cleaner
+5 - Essentials Programs Install
+6 - NVIDIA Driver Install
+7 - Ninite Online Install
+8 - ML-1610 Printer Driver
+9 - FFMpeg Install
+10 - Encoding Video
+11 - Laragon Install  
+12 - Python Install  
+13 - Youtube-DL GUI     
+14 - StaxRip
+15 - Kaspersky Free Install
 0 - Exit`n
 "@
 
@@ -63,36 +61,29 @@ Function Get-InstallMenu {
     $MenuOption = Read-Host 'Select option'
     Write-Host ""
   
-    Switch ($MenuOption.Trim()) {
-      1 {
-        Write-Host "Modules Install" -ForegroundColor Green 
-        Get-Modules
-        Write-Host ""
-        Wait-Script
-        $MenuOption = $null
-      }      
-      2 {  
+    Switch ($MenuOption.Trim()) {     
+      1 {  
         Write-Host "Services Tweaking" -ForegroundColor Green    
         Get-TweakWindows
         Write-Host ""
         Wait-Script
         $MenuOption = $null         
       }
-      3 {
+      2 {
         Write-Host "Enable .NET Framework 3.5" -ForegroundColor Green
         Enable-WindowsOptionalFeature -Online -FeatureName "NetFx3"
         Write-Host ""
         Wait-Script
         $MenuOption = $null 
       }
-      4 {       
+      3 {       
         Write-Host "Visual C++ Installer Runtimes" -ForegroundColor Green 
         Get-VisualRuntime
         Write-Host ""
         Wait-Script
         $MenuOption = $null 
       }      
-      5 {         
+      4 {         
         Write-Host "Streams Cleaner" -ForegroundColor Green        
         Get-StreamsSysInternals
         DS_ExecuteProcess -FileName "streams" -Arguments "-s -d"   
@@ -100,7 +91,7 @@ Function Get-InstallMenu {
         Wait-Script
         $MenuOption = $null           
       }      
-      6 {                      
+      5 {                      
         DS_ExecuteProcess -FileName "streams" -Arguments "-s -d"   
         Write-Host "Download and install programs" -ForegroundColor Green       
         Get-RevoUninstaller        
@@ -120,77 +111,70 @@ Function Get-InstallMenu {
         Wait-Script
         $MenuOption = $null
       }
-      7 {       
+      6 {       
         Write-Host "Install NVIDIA Drivers" -ForegroundColor Green
         Get-NVidia
         Write-Host ""
         Wait-Script
         $MenuOption = $null
       }
-      8 {       
+      7 {       
         Write-Host "Ninite Online Install" -ForegroundColor Green       
         Get-Ninite       
         Write-Host ""
         Wait-Script
         $MenuOption = $null                  
-      }      
-      9 {  
-        Write-Host "Update Windows" -ForegroundColor Green 
-        Get-Updates
-        Write-Host ""
-        Wait-Script
-        $MenuOption = $null
-      }      
-      10 {        
+      }            
+      8 {        
         Write-Host "ML-1610 Printer Install" -ForegroundColor Green
         Get-PrinterDriver       
         Write-Host ""
         Wait-Script
         $MenuOption = $null
       }
-      11 {
+      9 {
         Write-Host "FFMPEG Install" -ForegroundColor Green
         Get-FFMpeg                
         Write-Host ""
         Wait-Script
         $MenuOption = $null
       }
-      12 {
+      10 {
         Write-Host "Encoding Video" -ForegroundColor Green
         Get-ShanaEncoder       
         Write-Host ""
         Wait-Script
         $MenuOption = $null
       }
-      13 {
+      11 {
         Write-Host "Laragon Install" -ForegroundColor Green
         Get-Laragon       
         Write-Host ""
         Wait-Script
         $MenuOption = $null
       }
-      14 {
+      12 {
         Write-Host "Python Install" -ForegroundColor Green
         Get-Python        
         Write-Host ""
         Wait-Script
         $MenuOption = $null
       }
-      15 {
+      13 {
         Write-Host "Youtube-DL GUI" -ForegroundColor Green
         Get-ViviDL
         Write-Host ""
         Wait-Script
         $MenuOption = $null
       }
-      16 {
+      14 {
         Write-Host "StaxRip" -ForegroundColor Green
         Get-StaxRip
         Write-Host ""
         Wait-Script
         $MenuOption = $null
       }     
-      17 {
+      15 {
         Write-Host "Kaspersky Free Install" -ForegroundColor Green
         Get-KasperskyFree
         Write-Host ""
