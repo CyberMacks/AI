@@ -9,10 +9,6 @@ Set-ExecutionPolicy RemoteSigned
 ``` 
 ou
 ```powershell
-Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
-``` 
-ou
-```powershell
 Set-ExecutionPolicy Bypass
 ``` 
 Logo após isso, vá ate o diretório onde baixou o script e digite:
