@@ -141,21 +141,21 @@ Function Get-InstallMenu {
       7 {                      
         DS_ExecuteProcess -FileName "streams" -Arguments "-s -d"   
         Write-Host "Download and install programs" -ForegroundColor Green       
-        Get-RevoUninstaller  
-        Get-LockHunter 
+        Get-RevoUninstaller
+        Get-DiagBB 
+        Get-LockHunter         
         Get-IDM 
-        Get-WinRAR
-        Get-DropBox            
-        Get-Telegram 
-        Get-LightShot 
+        Get-WinRAR                 
+        Get-Telegram         
         Get-JDK 
         Get-Unified      
-        Get-Arduino
-        Get-DiagBB
-        Get-GPBCEF
+        Get-Arduino                
         Get-Git
         Get-Teams        
-        Get-GitHubCLI       
+        Get-GitHubCLI
+        Get-LightShot  
+        Get-GPBCEF
+        Get-DropBox       
         Write-Host ""
         Wait-Script
         $MenuOption = $null
