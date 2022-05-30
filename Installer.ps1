@@ -1,6 +1,3 @@
-param(
-  [Parameter(Mandatory = $false)]
-  [switch]$shouldAssumeToBeElevated,
 if (Test-Path -Path "$PSScriptRoot\Downloads") {
   Get-ChildItem -Path "$PSScriptRoot\Downloads" -Recurse | Remove-Item -Force -Recurse
   Remove-Item -Path "$PSScriptRoot\Downloads" -Force
