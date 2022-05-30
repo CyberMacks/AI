@@ -2,7 +2,7 @@
 
 Script de pós instalação para Windows usando [powershell](https://docs.microsoft.com/pt-br/powershell/scripting/overview?view=powershell-7.2) e [aria2](https://aria2.github.io/).
 
-Abra um terminal como administrador, e digite:
+Abra um terminal powershell como administrador, e digite:
 
 ```powershell
 Set-ExecutionPolicy RemoteSigned
@@ -25,7 +25,9 @@ Totalmente online, salva em uma pasta e instala silenciosamente se possível.
 
 Leve o script para onde quiser e execute seguindo os passos acima!
 
-*Inspirado na ferramenta [Fedy](https://github.com/rpmfusion-infra/fedy) mas sem interface gráfica!*
+*Inspirado na ferramenta [Fedy](https://github.com/rpmfusion-infra/fedy) !*
+
+Script válido somente para Windows 10 64 bits e Windows 11 64 bits.
 
 # License
 
