@@ -2,8 +2,12 @@
 
 Script de pós instalação para Windows usando [powershell](https://docs.microsoft.com/pt-br/powershell/scripting/overview?view=powershell-7.2) e [aria2](https://aria2.github.io/).
 
-Para usar o script, abra um terminal como administrador, digite ```powershell``` e informe o seguinte:
+Abra um terminal como administrador, e digite:
 
+```powershell
+Set-ExecutionPolicy RemoteSigned
+``` 
+ou
 ```powershell
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 ``` 
@@ -16,10 +20,10 @@ Logo após isso, vá ate o diretório onde baixou o script e digite:
 ```powershell
 .\Installer.ps1
 ```
-O script executará, baixará algumas dependências e mostrará um menu, onde poderá ser selecionada uma ação a ser executada.<br>
+O script baixará algumas dependências e mostrará um menu, onde poderá ser selecionada uma ação a ser executada.<br>
 Totalmente online, salva em uma pasta e instala silenciosamente se possível.
 
-Leve o script para onde quiser e execute.
+Leve o script para onde quiser e execute seguindo os passos acima!
 
 *Inspirado na ferramenta [Fedy](https://github.com/rpmfusion-infra/fedy) mas sem interface gráfica!*
 
