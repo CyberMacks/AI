@@ -1,7 +1,6 @@
 # AfterInstall
 
-Script de pós instalação para Windows 10/11 64 bits usando [powershell](https://docs.microsoft.com/pt-br/powershell/scripting/overview?view=powershell-7.2) e [7zr](https://www.7-zip.org/download.html).
-
+Script de pós instalação para Windows 10/11 64 bits usando powershell e 7zr
 Abra o powershell como administrador, e digite:
 
 ```powershell
