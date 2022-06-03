@@ -1,4 +1,4 @@
-# AfterInstall
+# After
 
 Script de pós instalação para Windows 10/11 64 bits usando powershell e 7zr.
 Abra o powershell como administrador, e digite:
